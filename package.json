@@ -1,0 +1,30 @@
+{
+  "name": "pdf-filler",
+  "version": "1.0.0",
+  "description": "This package fills pdfs and brings the rain",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^1.7.0",
+    "ajv": "^6.5.2",
+    "pako": "^1.0.6",
+    "pdfform.js": "^1.0.13",
+    "pdfjs-dist": "^2.0.489",
+    "request": "^2.87.0",
+    "uuid": "^3.3.2",
+    "webpack": "^2.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/username/repository.git"
+  },
+  "keywords": [
+    "pdf",
+    "automation",
+    "google"
+  ],
+  "author": "Tim Booher and Jason Polites",
+  "license": "ISC"
+}
