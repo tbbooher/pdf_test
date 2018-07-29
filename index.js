@@ -29,6 +29,10 @@ exports.writeToPDF = (req, res) => {
     if (authHeader) {
         let token = authHeader.split(' ')[1];
 
+        let data = req.body;
+
+        let file_name = `${data['file_name']}.pdf`;
+
         console.log(`Verifying token: ${token}`);
 
         verifyToken(token, APP_SCRIPT_CLIENT_ID, (err) => {
@@ -39,7 +43,7 @@ exports.writeToPDF = (req, res) => {
             }
             console.log('valid token!')
             // Token is valid, write the PDF
-            streamPDFToGCS(req.body, (err, buffer) => {
+            streamPDFToGCS(file_name, data, (err, buffer) => {
                 if (err) {
                     console.error(err);
                     res.status(500).send(err);
@@ -56,7 +60,7 @@ exports.writeToPDF = (req, res) => {
 }
 
 
-function streamPDFToGCS(data, callback) {
+function streamPDFToGCS(file_name, data, callback) {
 
     console.log(`Writing data ${JSON.stringify(data)} to PDF...`);
 
@@ -68,7 +72,7 @@ function streamPDFToGCS(data, callback) {
     const bucket = storage.bucket(TARGET_BUCKET);
     const file = bucket.file(name);
 
-    fs.readFile('dd1351.pdf', function(err, buff) {
+    fs.readFile(file_name, function(err, buff) {
         if (err) throw err;
         pdf = pdf_form().transform(buff, data)
         console.log('-------- transform successful --------')
