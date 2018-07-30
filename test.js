@@ -2,7 +2,7 @@ let fs = require("fs");
 let pdf_form = require('pdfform.js');
 
 // get the form fields
-fs.readFile('sap6.pdf', function(err, data) {
+fs.readFile('af707c.pdf', function(err, data) {
     if (err) throw err;
     console.log(pdf_form().list_fields(data));
 });
